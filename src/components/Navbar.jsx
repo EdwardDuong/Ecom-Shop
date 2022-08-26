@@ -3,6 +3,7 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive.js";
+
 const Navbar = () => {
   return (
     <Container>
@@ -15,7 +16,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <Logo>ONLINE SHOP</Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
@@ -94,4 +95,5 @@ const MenuItem = styled.div`
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+
 export default Navbar;
