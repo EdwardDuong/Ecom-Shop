@@ -10,8 +10,9 @@ import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { Link, useLocation, withRouter } from "react-router-dom";
+import { useLocation, withRouter } from "react-router-dom";
 import { useEffect } from "react";
+import Success from "./pages/Success";
 function App() {
   const user = true;
   function _ScrollToTop(props) {
@@ -41,6 +42,9 @@ function App() {
           <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
           <Route path="/register">
             {user ? <Redirect to="/" /> : <Register />}
+          </Route>
+          <Route path="/success">
+            <Success />
           </Route>
         </Switch>
       </ScrollToTop>
