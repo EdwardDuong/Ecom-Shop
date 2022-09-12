@@ -13,8 +13,9 @@ import Register from "./pages/Register";
 import { useLocation, withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import Success from "./pages/Success";
+import { useSelector } from "react-redux";
 function App() {
-  const user = true;
+  const user = useSelector((state) => state.user.current);
   function _ScrollToTop(props) {
     const { pathname } = useLocation();
     useEffect(() => {
