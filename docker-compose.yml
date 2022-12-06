@@ -3,9 +3,8 @@ services:
   ecom-shop-api:
     environment:
       - MONGO=mongodb+srv://edwardduong:anhden11@ecom-shop.pqzstr4.mongodb.net/?retryWrites=true&w=majority
-    build:
-      context: .
-      dockerfile: express.Dockerfile
+    image:
+      edwardduong/ecom-shop-api
     volumes:
       - ./:/usr/app
     container_name: ecom-shop-api
@@ -16,9 +15,8 @@ services:
       - mongodb_network
 
   ecom-shop-client:
-    build: 
-      context: .
-      dockerfile: client.Dockerfile
+    image:
+      edwardduong/ecom-shop-client
     container_name: ecom-shop-client
     network_mode: host
     ports:
