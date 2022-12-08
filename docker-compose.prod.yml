@@ -1,18 +1,5 @@
 version: '3.8'
 services:
-  # mongo:
-  #   image: mongo
-  #   restart: unless-stopped
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #   ports: 
-  #     - 27017:27017
-  #   volumes:
-  #     - mongodb:/data/db
-  #   networks:
-  #     - mongodb_network
-
   ecom-shop-api:
     environment:
       - MONGO=mongodb+srv://edwardduong:anhden11@ecom-shop.pqzstr4.mongodb.net/?retryWrites=true&w=majority
@@ -25,24 +12,33 @@ services:
     ports:
       - 5000:5000
     command: node index.js
-    # depends_on:
-    #   - mongo
     networks:
-      - mongodb_network
-
+      - ecom_network
   client:
     build: 
       context: .
       dockerfile: client.prod.Dockerfile
     container_name: ecom-shop-client
-    ports:
-      - 80:80
+    # ports:
+    #   - 80:80
     depends_on:
       - ecom-shop-api
-
-volumes:
-  mongodb:
+    networks:
+      - ecom_network
+  
+  proxy:
+    build:
+      context: .
+      dockerfile: proxy.Dockerfile
+    container_name: proxy
+    ports: 
+      - 80:80
+    depends_on:
+      - client
+      - ecom-shop-api
+    networks:
+      - ecom_network
 
 networks:
-  mongodb_network:
-    name: mongodb_network
+  ecom_network:
+    name: ecom_network
